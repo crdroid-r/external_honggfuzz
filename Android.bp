@@ -1,4 +1,7 @@
 
+subdirs = [
+    "third_party/android/libBlocksRuntime",
+]
 
 cc_defaults {
     name: "honggfuzz-defaults",
