@@ -3,6 +3,7 @@ cc_library {
     cflags: [
         "-Wall",
         "-Wextra",
+        "-Werror",
         "-Wno-unused-parameter",
         "-Wno-unused-function",
         "-DHAVE_SYNC_BOOL_COMPARE_AND_SWAP_INT",
