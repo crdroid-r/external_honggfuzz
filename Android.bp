@@ -25,7 +25,7 @@ cc_library_headers {
 }
 
 cc_library {
-    name: "hongfuzz_libcommon",
+    name: "honggfuzz_libcommon",
 
     defaults: ["honggfuzz-defaults"],
 
@@ -45,19 +45,19 @@ cc_library {
 }
 
 cc_library_headers {
-    name: "hongfuzz_libhfuzz_headers",
+    name: "honggfuzz_libhfuzz_headers",
     export_include_dirs: ["libhfuzz"],
 }
 
 cc_library {
-    name: "hongfuzz_libhfuzz",
+    name: "honggfuzz_libhfuzz",
     defaults: ["honggfuzz-defaults"],
 
-    header_libs: ["hongfuzz_libhfuzz_headers"],
-    export_header_lib_headers: ["hongfuzz_libhfuzz_headers"],
+    header_libs: ["honggfuzz_libhfuzz_headers"],
+    export_header_lib_headers: ["honggfuzz_libhfuzz_headers"],
 
-    static_libs: [
-        "hongfuzz_libcommon",
+    whole_static_libs: [
+        "honggfuzz_libcommon",
         "libBlocksRuntime", // -fblocks
     ],
 
@@ -69,13 +69,14 @@ cc_library {
     ],
 }
 
-cc_library {
-    name: "libhonggfuzz",
+
+
+cc_binary {
+    name: "honggfuzz",
     defaults: ["honggfuzz-defaults"],
 
-    static_libs: [
-        "hongfuzz_libhfuzz",
-        "hongfuzz_libcommon",
+    whole_static_libs: [
+        "honggfuzz_libcommon",
         "libcapstone",
         "libBlocksRuntime", // -fblocks
 
@@ -88,15 +89,17 @@ cc_library {
         "display.c",
         "fuzz.c",
         "honggfuzz.c",
+        "input.c",
         "mangle.c",
         "report.c",
         "sancov.c",
         "sanitizers.c",
         "subproc.c",
         "linux/arch.c",
-        "linux/ptrace_utils.c",
+        "linux/trace.c",
         "linux/perf.c",
         "linux/unwind.c",
         "linux/pt.c",
     ],
 }
+
