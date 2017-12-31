@@ -1,15 +1,23 @@
+#include <inttypes.h>
 #include <openssl/err.h>
 #include <openssl/evp.h>
-#include <inttypes.h>
+#include <openssl/ssl.h>
 
-#include <libhfuzz.h>
+#include <hf_ssl_lib.h>
+#include <libhfuzz/libhfuzz.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int LLVMFuzzerTestOneInput(const uint8_t* buf, size_t len)
-{
+int LLVMFuzzerInitialize(int* argc, char*** argv) {
+    HFInit();
+    HFResetRand();
+
+    return 1;
+}
+
+int LLVMFuzzerTestOneInput(const uint8_t* buf, size_t len) {
     EVP_PKEY_free(d2i_AutoPrivateKey(NULL, &buf, len));
     return 0;
 }
