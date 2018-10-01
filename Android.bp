@@ -53,6 +53,15 @@ cc_library {
     name: "honggfuzz_libhfuzz",
     defaults: ["honggfuzz-defaults"],
 
+    arch: {
+        x86: {
+            cflags: [
+                // Suppress this performance warning for 32-bit x86.
+                "-Wno-atomic-alignment",
+            ],
+        },
+    },
+
     header_libs: ["honggfuzz_libhfuzz_headers"],
     export_header_lib_headers: ["honggfuzz_libhfuzz_headers"],
 
@@ -74,6 +83,15 @@ cc_library {
 cc_binary {
     name: "honggfuzz",
     defaults: ["honggfuzz-defaults"],
+
+    arch: {
+        x86: {
+            cflags: [
+                // Suppress this performance warning for 32-bit x86.
+                "-Wno-atomic-alignment",
+            ],
+        },
+    },
 
     whole_static_libs: [
         "honggfuzz_libcommon",
