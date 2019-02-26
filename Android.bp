@@ -21,7 +21,7 @@ cc_defaults {
 
 cc_library_headers {
     name: "honggfuzz_libcommon_headers",
-    export_include_dirs: ["libcommon"],
+    export_include_dirs: ["libhfcommon"],
 }
 
 cc_library {
@@ -32,10 +32,7 @@ cc_library {
     header_libs: ["honggfuzz_libcommon_headers"],
     export_header_lib_headers: ["honggfuzz_libcommon_headers"],
     srcs: [
-        "libcommon/files.c",
-        "libcommon/log.c",
-        "libcommon/ns.c",
-        "libcommon/util.c",
+        "libhfcommon/*.c",
     ],
 
 
@@ -71,10 +68,7 @@ cc_library {
     ],
 
     srcs: [
-        "libhfuzz/instrument.c",
-        "libhfuzz/linux.c",
-        "libhfuzz/memorycmp.c",
-        "libhfuzz/persistent.c",
+        "libhfuzz/*.c",
     ],
 }
 
@@ -103,21 +97,11 @@ cc_binary {
     ],
 
     srcs: [
-        "cmdline.c",
-        "display.c",
-        "fuzz.c",
-        "honggfuzz.c",
-        "input.c",
-        "mangle.c",
-        "report.c",
-        "sancov.c",
-        "sanitizers.c",
-        "subproc.c",
-        "linux/arch.c",
-        "linux/trace.c",
-        "linux/perf.c",
-        "linux/unwind.c",
-        "linux/pt.c",
+        "*.c",
+        "linux/*.c",
+    ],
+    exclude_srcs: [
+        "linux/bfd.c",
     ],
 }
 
