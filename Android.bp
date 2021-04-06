@@ -92,7 +92,7 @@ cc_binary {
         "libcapstone",
         "libBlocksRuntime", // -fblocks
 
-        "libunwind_static",
+        "libunwind",
         "liblzma", // needed for libunwind
     ],
 
